@@ -1,12 +1,15 @@
 import { Container, Profile } from "./style";
 
 import { useAuth } from "../../hooks/auth";
+import { api } from "../../service/api";
 
 import { Input } from "../Input";
 import { ButtonText } from "../ButtonText";
 
 export function Header() {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
+
+  const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
 
   return (
     <Container>
@@ -18,11 +21,11 @@ export function Header() {
 
       <Profile>
         <div>
-          <h2>Andreza Tiezzi</h2>
+          <h2>{user.name}</h2>
           <ButtonText title="sair" onClick={signOut} />
         </div>
 
-        <img src="https://github.com/AndrezaBarros.png" alt="Foto do usuário" />
+        <img src={avatarUrl} alt="Foto do usuário"/>
       </Profile>
     </Container>
   );
