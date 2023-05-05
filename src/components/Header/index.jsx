@@ -5,11 +5,14 @@ import { api } from "../../service/api";
 
 import { Input } from "../Input";
 import { ButtonText } from "../ButtonText";
+import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 
 export function Header() {
   const { signOut, user } = useAuth();
 
-  const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder;
 
   return (
     <Container>
@@ -19,13 +22,13 @@ export function Header() {
         <Input placeholder="Pesquisar pelo título" type="text" />
       </div>
 
-      <Profile>
+      <Profile to="/profile">
         <div>
           <h2>{user.name}</h2>
           <ButtonText title="sair" onClick={signOut} />
         </div>
 
-        <img src={avatarUrl} alt="Foto do usuário"/>
+        <img src={avatarUrl} alt="Foto do usuário" />
       </Profile>
     </Container>
   );
