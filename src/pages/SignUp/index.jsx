@@ -25,7 +25,6 @@ export function SignUp() {
       .post("/users", { name, email, password })
       .then(() => {
         alert("Cadastro realizado com sucesso");
-        navigate("/");
       })
       .catch((error) => {
         if (error.message) {
@@ -63,12 +62,12 @@ export function SignUp() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button title="Cadastrar" />
+        <Button title="Cadastrar" onClick={handleSignUp}/>
 
         <ButtonText
           title="Voltar para o login"
           icon={AiOutlineArrowLeft}
-          onClick={handleSignUp}
+          id="backLogin"
         />
       </Form>
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Form, Background } from "./style";
 import { FiMail, FiLock } from "react-icons/fi";
 
@@ -10,6 +11,8 @@ import { useAuth } from "../../hooks/auth";
 export function SignIn() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const navigateTo = useNavigate();
 
   const { signIn } = useAuth();
 
@@ -40,7 +43,7 @@ export function SignIn() {
 
         <Button title="Entrar" onClick={handleSignIn} />
 
-        <ButtonText title="Criar conta" />
+        <ButtonText title="Criar conta" id="createAccount"/>
       </Form>
 
       <Background />

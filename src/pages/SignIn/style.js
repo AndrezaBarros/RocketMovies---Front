@@ -31,7 +31,11 @@ export const Form = styled.form`
         color: ${({ theme }) => theme.COLORS.WHITE_90};
         font-size: 24px;
 
-        margin-bottom: 48px;
+        margin-bottom: 24px;
+    }
+
+    #createAccount{
+        margin-top: 156px;
     }
 `;
 

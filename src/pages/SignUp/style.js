@@ -33,6 +33,10 @@ export const Form = styled.form`
 
         margin-bottom: 48px;
     }
+
+    #backLogin{
+        margin-top: 142px;
+    }
 `;
 
 export const Background = styled.div`
