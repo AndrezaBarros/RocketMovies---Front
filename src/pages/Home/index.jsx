@@ -1,29 +1,63 @@
-import { Container, Content } from "./style";
-
-import { AiOutlinePlus } from "react-icons/ai"
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Container, Content, Movie } from "./style";
+import { AiOutlinePlus } from "react-icons/ai";
 
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
-import { WatchedMovie } from "../../components/WatchedMovie";
+import { api } from "../../service/api";
+import { Rating } from "../../components/Rating";
+import { Tags } from "../../components/Tags";
 
 export function Home() {
-    return(
-        <Container>
-            <Header/>
+  const [movies, setMovies] = useState([]);
 
-            <div id="title_button">
-                <h1>Meus filmes</h1>
-                <Button icon={AiOutlinePlus} title="Adicionar filme" id="addMovie"/>
-            </div>
+  const {search} = Header();
 
-            <Content>
-                <div id="movieList">
-                    <WatchedMovie/>
-                    <WatchedMovie/>
-                    <WatchedMovie/>
+  const navigateTo = useNavigate();
+
+  async function fetchNotes() {
+    const response = await api.get(`/movieNotes`);
+    setMovies(response.data);
+
+    console.log(response.data);
+  }
+
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+
+  return (
+    <Container>
+      <Header />
+
+      <div id="title_button">
+        <h1>Meus filmes</h1>
+        <Button icon={AiOutlinePlus} title="Adicionar filme" id="addMovie"/>
+      </div>
+
+      <Content>
+        {movies &&
+          movies.map((movie) => (
+            <Movie key={String(movie.id)}>
+              <main>
+                <div id="identificador">
+                  <h2>{movie.title}</h2>
+                  <Rating rating={movie.rating} />
                 </div>
-            </Content>
 
-        </Container>
-    );
+                <p>{movie.description}</p>
+
+                <div id="tags">
+                  {movie.tags &&
+                    movie.tags.map((tag) => (
+                      <Tags key={String(tag.id)} title={tag.name} />
+                    ))}
+                </div>
+              </main>
+            </Movie>
+          ))}
+      </Content>
+    </Container>
+  );
 }

@@ -9,5 +9,7 @@ export const Container = styled.div`
 
     font-size: 12px;
     font-weight: 400;
+    font-family: "Roboto";
+    align-self: center;
     color: ${({ theme }) => theme.COLORS.WHITE_80};
 `;

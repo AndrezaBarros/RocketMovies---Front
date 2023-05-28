@@ -1,4 +1,5 @@
-import { Container, Profile } from "./style";
+import { useState } from "react";
+import { Container, Profile, LinkProfile } from "./style";
 
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../service/api";
@@ -8,6 +9,7 @@ import { ButtonText } from "../ButtonText";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 
 export function Header() {
+  const [search, setSearch] = useState("");
   const { signOut, user } = useAuth();
 
   const avatarUrl = user.avatar
@@ -19,12 +21,12 @@ export function Header() {
       <h1>RocketMovies</h1>
 
       <div id="input">
-        <Input placeholder="Pesquisar pelo título" type="text" />
+        <Input placeholder="Pesquisar pelo título" type="text" onChange={() => setSearch(e.target.value)}/>
       </div>
 
-      <Profile to="/profile">
+      <Profile>
         <div>
-          <h2>{user.name}</h2>
+          <LinkProfile to="/profile">{user.name}</LinkProfile>
           <ButtonText title="sair" onClick={signOut} />
         </div>
 

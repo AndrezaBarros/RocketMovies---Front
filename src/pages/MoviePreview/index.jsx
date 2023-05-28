@@ -5,7 +5,7 @@ import { HiOutlineClock } from "react-icons/hi";
 
 import { Header } from "../../components/Header";
 import { ButtonText } from "../../components/ButtonText";
-import { Evaluation } from "../../components/Evaluation";
+import { Rating } from "../../components/Rating";
 import { Tags } from "../../components/Tags";
 
 export function MoviePreview() {
@@ -21,7 +21,7 @@ export function MoviePreview() {
 
                 <div>
                     <h1>Interestelar</h1>
-                    <Evaluation/>
+                    <Rating/>
                 </div>
 
                 <div id="details">

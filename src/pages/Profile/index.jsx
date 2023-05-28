@@ -13,7 +13,7 @@ import { api } from "../../service/api";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 
 export function Profile() {
-  const { user, updateProfile, signOut } = useAuth();
+  const { user, updateProfile} = useAuth();
 
   const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
 

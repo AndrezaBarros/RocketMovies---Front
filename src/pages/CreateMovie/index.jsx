@@ -34,6 +34,19 @@ export function CreateMovie() {
   }
 
   async function handleNewNote() {
+    if (!title) {
+      alert("Por favor insira um título para o seu filme.");
+    }
+
+    if (!rating) {
+      alert("Por favor insira uma nota de 0 a 5 para este filme.");
+    }
+
+    if (newTag) {
+      alert(
+        "Você preencheu o campo de tag, mas não adicionou. Por favor adicione ou deixe o campo vazio"
+      );
+    }
     await api
       .post("/movieNotes", { title, rating, description, tags })
       .then(() => {

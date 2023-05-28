@@ -51,3 +51,52 @@ export const Content = styled.div`
         gap: 24px;
     };
 `;
+
+export const Movie = styled.div`
+    padding: 32px;
+    margin-bottom: 24px;
+
+    border-radius: 16px;
+    background-color: ${({ theme }) => theme.COLORS.PINK_0};
+
+
+    > main {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        #identificador {
+            width: 217px;
+            height: 52px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        h2 {
+            color: ${({ theme }) => theme.COLORS.WHITE_90};
+            font-family: "Roboto slab";
+            font-size: 24px;
+            font-weight: 700;
+
+            margin-bottom: -7px;
+        }
+        
+        p {
+            color: ${({ theme }) => theme.COLORS.GRAY_40};
+            font-size: 16px;
+            font-weight: 400;
+            font-family: "Roboto";
+
+            overflow: hidden;
+
+            height: 52px;
+        }
+
+        #tags {
+            display: flex;
+            gap: 8px;
+        }
+    }
+`;
