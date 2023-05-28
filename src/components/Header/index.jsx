@@ -8,8 +8,7 @@ import { Input } from "../Input";
 import { ButtonText } from "../ButtonText";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 
-export function Header() {
-  const [search, setSearch] = useState("");
+export function Header({search, setSearch}) {
   const { signOut, user } = useAuth();
 
   const avatarUrl = user.avatar
@@ -21,7 +20,7 @@ export function Header() {
       <h1>RocketMovies</h1>
 
       <div id="input">
-        <Input placeholder="Pesquisar pelo título" type="text" onChange={() => setSearch(e.target.value)}/>
+        <Input placeholder="Pesquisar pelo título" onChange={(e) => setSearch(e.target.value)}/>
       </div>
 
       <Profile>

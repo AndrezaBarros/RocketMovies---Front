@@ -62,7 +62,6 @@ export const Content = styled.div`
 
     #sinopseMovie{
         display: flex;
-        flex-direction: column;
 
         font-size: 16px;
         font-weight: 400;

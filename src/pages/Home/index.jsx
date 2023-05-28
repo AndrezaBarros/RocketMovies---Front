@@ -11,35 +11,36 @@ import { Tags } from "../../components/Tags";
 
 export function Home() {
   const [movies, setMovies] = useState([]);
-
-  const {search} = Header();
+  const [search, setSearch] = useState("");
 
   const navigateTo = useNavigate();
 
-  async function fetchNotes() {
-    const response = await api.get(`/movieNotes`);
-    setMovies(response.data);
-
-    console.log(response.data);
+  function handleDetail(id) {
+    navigateTo(`moviePreview/${id}`);
   }
 
   useEffect(() => {
+    async function fetchNotes() {
+      console.log("passei aqui");
+      const response = await api.get(`/movieNotes?title=${search}`);
+      setMovies(response.data);
+    }
     fetchNotes();
-  }, []);
+  }, [search]);
 
   return (
     <Container>
-      <Header />
+      <Header search={search} setSearch={setSearch}/>
 
       <div id="title_button">
         <h1>Meus filmes</h1>
-        <Button icon={AiOutlinePlus} title="Adicionar filme" id="addMovie"/>
+        <Button icon={AiOutlinePlus} title="Adicionar filme" id="addMovie" />
       </div>
 
       <Content>
         {movies &&
           movies.map((movie) => (
-            <Movie key={String(movie.id)}>
+            <Movie key={String(movie.id)} onClick={() => handleDetail(movie.id)}>
               <main>
                 <div id="identificador">
                   <h2>{movie.title}</h2>
