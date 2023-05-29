@@ -20,6 +20,10 @@ export function SignIn() {
     signIn({ email, password });
   }
 
+  function handleSignUp() {
+    navigateTo("/signUp")
+  }
+
   return (
     <Container>
       <Form>
@@ -43,7 +47,7 @@ export function SignIn() {
 
         <Button title="Entrar" onClick={handleSignIn} />
 
-        <ButtonText title="Criar conta" id="createAccount"/>
+        <ButtonText title="Criar conta" id="createAccount" onClick={() => handleSignUp()}/>
       </Form>
 
       <Background />

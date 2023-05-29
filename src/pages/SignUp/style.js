@@ -35,7 +35,7 @@ export const Form = styled.form`
     }
 
     #backLogin{
-        margin-top: 142px;
+        margin-top: 42px;
     }
 `;
 

@@ -14,7 +14,7 @@ export function SignUp() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const navigate = useNavigate();
+  const navigateTo = useNavigate();
 
   function handleSignUp() {
     if (!name || !email || !password) {
@@ -33,6 +33,10 @@ export function SignUp() {
           alert("Não foi possível cadastrar");
         }
       });
+  }
+
+  function handleSignIn() {
+    navigateTo("/");
   }
 
   return (
@@ -68,6 +72,7 @@ export function SignUp() {
           title="Voltar para o login"
           icon={AiOutlineArrowLeft}
           id="backLogin"
+          onClick={() => handleSignIn()}
         />
       </Form>
 

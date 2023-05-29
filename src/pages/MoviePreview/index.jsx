@@ -13,9 +13,12 @@ import { Tags } from "../../components/Tags";
 
 export function MoviePreview() {
   const [data, setData] = useState();
-  const [user, setUser] = useState();
-
+  const navigateTo = useNavigate();
   const params = useParams(null);
+
+  function handleBack() {
+    navigateTo(-1);
+  }
 
   useEffect(() => {
     async function fetchMovie() {
@@ -23,13 +26,7 @@ export function MoviePreview() {
       setData(response.data);
     }
 
-    async function fetchUser() {
-        const response = await api.get(`/users/?user_id=${data.user_id}`);
-        setUser(response.data);
-    }
-
     fetchMovie();
-    fetchUser();
   }, []);
 
   return (
@@ -38,7 +35,7 @@ export function MoviePreview() {
 
       {data && (
         <Content>
-          <ButtonText icon={FiArrowLeft} title="Voltar" />
+          <ButtonText icon={FiArrowLeft} title="Voltar" onClick={() => handleBack()}/>
 
           <div>
             <h1>{data.title}</h1>
@@ -50,7 +47,7 @@ export function MoviePreview() {
               src="https://github.com/AndrezaBarros.png"
               alt="Foto do usuário"
             />
-            <span>Por {user.name}</span>
+            <span>Por {data.user.name}</span>
             <HiOutlineClock size={19} />
             <span>{data.updated_at ?? data.created_at}</span>
           </div>
@@ -58,7 +55,7 @@ export function MoviePreview() {
           {data.tags && (
             <div id="tags">
               {data.tags.map((tag) => (
-                <Tags key={tag.id} title={tag.name} />
+                <Tags key={String(tag.id)} title={tag.name} />
               ))}
             </div>
           )}

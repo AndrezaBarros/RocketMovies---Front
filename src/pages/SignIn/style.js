@@ -35,7 +35,7 @@ export const Form = styled.form`
     }
 
     #createAccount{
-        margin-top: 156px;
+        margin-top: 42px;
     }
 `;
 
