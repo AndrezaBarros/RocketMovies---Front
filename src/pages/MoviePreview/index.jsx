@@ -13,6 +13,7 @@ import { Tags } from "../../components/Tags";
 
 export function MoviePreview() {
   const [data, setData] = useState();
+  const [updatedAt, setUpdatedAt] = useState("");
   const navigateTo = useNavigate();
   const params = useParams(null);
 
@@ -24,6 +25,10 @@ export function MoviePreview() {
     async function fetchMovie() {
       const response = await api.get(`/movieNotes/${params.id}`);
       setData(response.data);
+
+      let updated_at_date = new Date(response.data.updated_at);
+
+      setUpdatedAt(`${updated_at_date.getDate()}/${(updated_at_date.getMonth()+1).toString().padStart(2, "0")}/${updated_at_date.getFullYear()} às ${updated_at_date.getHours()}:${updated_at_date.getMinutes()}`);
     }
 
     fetchMovie();
@@ -35,7 +40,11 @@ export function MoviePreview() {
 
       {data && (
         <Content>
-          <ButtonText icon={FiArrowLeft} title="Voltar" onClick={() => handleBack()}/>
+          <ButtonText
+            icon={FiArrowLeft}
+            title="Voltar"
+            onClick={() => handleBack()}
+          />
 
           <div>
             <h1>{data.title}</h1>
@@ -49,7 +58,7 @@ export function MoviePreview() {
             />
             <span>Por {data.user.name}</span>
             <HiOutlineClock size={19} />
-            <span>{data.updated_at ?? data.created_at}</span>
+            <span>{updatedAt}</span>
           </div>
 
           {data.tags && (

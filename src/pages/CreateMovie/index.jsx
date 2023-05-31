@@ -51,6 +51,7 @@ export function CreateMovie() {
       .post("/movieNotes", { title, rating, description, tags })
       .then(() => {
         alert("Filme criado com sucesso");
+        navigateTo("/");
       })
       .catch((error) => {
         if (error.response) {
@@ -62,12 +63,16 @@ export function CreateMovie() {
       });
   }
 
+  function handleBack() {
+    navigateTo(-1);
+  }
+
   return (
     <Container>
       <Header />
 
       <Content>
-        <ButtonText icon={FiArrowLeft} title="Voltar" />
+        <ButtonText icon={FiArrowLeft} title="Voltar" onClick={() => handleBack()}/>
 
         <h2>Novo Filme</h2>
 

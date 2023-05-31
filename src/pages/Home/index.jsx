@@ -19,6 +19,10 @@ export function Home() {
     navigateTo(`moviePreview/${id}`);
   }
 
+  function handleNewMovie() {
+    navigateTo("/createMovie");
+  }
+
   useEffect(() => {
     async function fetchNotes() {
       const response = await api.get(`/movieNotes?title=${search}`);
@@ -33,7 +37,7 @@ export function Home() {
 
       <div id="title_button">
         <h1>Meus filmes</h1>
-        <Button icon={AiOutlinePlus} title="Adicionar filme" id="addMovie" />
+        <Button icon={AiOutlinePlus} title="Adicionar filme" id="addMovie" onClick={() => handleNewMovie()}/>
       </div>
 
       <Content>

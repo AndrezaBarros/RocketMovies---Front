@@ -11,6 +11,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 70px;
 
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -23,7 +24,7 @@ export const Container = styled.div`
     }
 
     > #input {
-        width: 630px;
+        width: 100%;
         height: 56px;
     }
 `;
@@ -38,7 +39,9 @@ export const Profile = styled.div`
         justify-content: center;
         align-items: flex-end;
 
-        width: 110px;
+        width: 100%;
+
+        flex-wrap: nowrap;
 
         button {
             width: 26px;
