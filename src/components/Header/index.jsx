@@ -17,7 +17,7 @@ export function Header({search, setSearch}) {
     : avatarPlaceholder;
 
     function handleLogOut() {
-      navigateTo(-1);
+      navigateTo("/");
       signOut()
     }
 
